@@ -1,5 +1,4 @@
 """ TODO:
-* change Procfile to launch chopstix instead of hello
 * install post-install hook for bower install
 * configure a settings file for production
 """
