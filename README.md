@@ -41,10 +41,10 @@ Git
 * Clone Chopstix git repo:
 
 ```
-mkdir ~/projects
-mkdir ~/projects/testive
-cd ~/projects
-git clone git@github.com:tsorensen23/chopstix.git
+$ mkdir ~/projects
+$ mkdir ~/projects/testive
+$ cd ~/projects
+$ git clone git@github.com:tsorensen23/chopstix.git
 ```
 
 
