@@ -113,8 +113,8 @@ $ python
 >>> db.create_all()
 ```
 
-Running
-=======
+Running Locally
+===============
 
 * Load virtual environment
 
@@ -132,6 +132,33 @@ $ python chopstix.py
 
 * Open a web browser and go to http://127.0.0.1:5000/
 
+
+Running on Heroku
+=================
+
+* Create a Heroku stack
+
+```
+$ heroku create
+```
+
+* Configure Heroku Python Buildpack
+
+```
+$ heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-python
+```
+
+* Push to Heroku
+
+```
+$ git push heroku master
+```
+
+* Open heroku in a web browser to experience the magic:
+
+```
+$ heroku open
+```
 
 You're done :)
 ==============
