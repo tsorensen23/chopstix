@@ -1,2 +1,3 @@
 venv
 *.pyc
+chopstix/static/bower_components
