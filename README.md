@@ -21,8 +21,8 @@ MySQL Community Server
 ```mysql
 $ mysql -u root -p
 mysql> CREATE DATABASE IF NOT EXISTS chopstix;
-mysql> CREATE USER 'chop_user'@'%' IDENTIFIED BY 'chopstixRock$';
-mysql> GRANT ALL ON chopstix.* TO 'chop_user'@'%';
+mysql> CREATE USER 'chop_user'@'localhost' IDENTIFIED BY 'chopstixRock$';
+mysql> GRANT ALL ON chopstix.* TO 'chop_user'@'localhost';
 mysql> flush privileges;
 ```
 
