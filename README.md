@@ -32,10 +32,23 @@ Python
 ------
 
 Make sure you're running python 2.7: http://www.python.org/download
+Verify with:
+
+```
+$ python --version
+```
 
 
 Git
 ---
+
+* Get a github.com account.
+* Download the github binary and install it. (This will automatically update your version of git if it needs it.)
+* Verify with:
+
+```
+* git --version
+```
 
 * Get github.com access to the repo if you need to commit.
 * Clone Chopstix git repo:
