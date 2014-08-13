@@ -1,9 +1,6 @@
 from datetime import datetime
 
-from flask.ext.sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
-
+from chopstix import db
 
 class Ticket(db.Model):
     """Each instance of the Ticket model represents a ticket for sale."""
