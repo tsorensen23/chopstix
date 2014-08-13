@@ -47,7 +47,7 @@ Git
 * Verify with:
 
 ```
-* git --version
+$ git --version
 ```
 
 * Get github.com access to the repo if you need to commit.
