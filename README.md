@@ -129,7 +129,7 @@ Build Schema
 * Create a database framework if you don't have one already
 
 ```
-$ cd ~/projects/chopstix/chopstix
+$ cd ~/projects/chopstix
 $ python
 >>> from chopstix import db
 >>> db.create_all()
