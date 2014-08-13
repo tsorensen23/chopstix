@@ -42,7 +42,7 @@ Git
 
 ```
 $ mkdir ~/projects
-$ mkdir ~/projects/testive
+$ mkdir ~/projects/chopstix
 $ cd ~/projects
 $ git clone git@github.com:tsorensen23/chopstix.git
 ```
@@ -56,10 +56,19 @@ $ sudo easy_install pip
 $ sudo pip install virtualenv
 ```
 
-* Install a new virtual environment in the directory where the project will live.
+Node
+----
+
+You always need a good Node for one reason or another: Get the binary and install it from http://nodejs.org
+
+
+Bower
+-----
+
+We user bower to manage our front-end packages
 
 ```
-virtualenv --no-site-packages ~/projects/chopstix/venv
+$ npm install -g bower
 ```
 
 Install Requirements
@@ -72,7 +81,7 @@ pip
 
 ```
 $ cd ~/projects/chopstix
-$ pip install -r requirements
+$ pip install -r requirements.txt
 ```
 
 bower
