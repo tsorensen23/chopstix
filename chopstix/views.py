@@ -6,16 +6,19 @@
 
 import json
 
-from flask import Flask, render_template, Response
+# from flask import Flask
+from flask import render_template, Response
 from flask.ext.admin import Admin
 from flask.ext.admin.contrib.sqla import ModelView
 
+# from chopstix import app
+from chopstix import app
 from models import db, User, Ticket
 
-# App create/config.
-app = Flask(__name__)
-app.config.from_object('settings')
-db.init_app(app)
+
+# Initialize Packages
+# app = Flask(__name__)
+
 admin = Admin(app)
 
 # Admin views

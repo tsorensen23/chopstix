@@ -1,1 +1,1 @@
-web: gunicorn chopstix:app --log-file=-
+web: gunicorn manage:app --log-file=-
