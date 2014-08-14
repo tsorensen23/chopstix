@@ -1,8 +1,10 @@
-from flask import render_template, flash, redirect, session, url_for, request, g
+import json
+
+from flask import render_template, flash, redirect, session, url_for, request, g, Response
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
 from forms import LoginForm
-from models import User, ROLE_USER, ROLE_ADMIN
+from models import User, Ticket, ROLE_USER, ROLE_ADMIN
 
 @app.route('/')
 @app.route('/index')
@@ -23,6 +25,25 @@ def index():
         title = 'Home',
         user = user,
         posts = posts)
+
+@app.route('/data/tickets/')
+def show_tickets():
+    """Return json data for all tickets to be displayed."""
+    tickets = Ticket.query.all()
+    print dir(tickets)
+
+    payload = []
+    for ticket in tickets:
+        ticket_dict = {'game': ticket.game,
+                       'row': ticket.row,
+                       'seat_no': ticket.seat_no,
+                       'section': ticket.section,
+                       'seller': 'Deon W.',
+                       'price': 35,
+        }
+        payload.append(ticket_dict)
+
+    return Response(json.dumps(payload), mimetype='application/json')
 
 @app.route('/login', methods = ['GET', 'POST'])
 @oid.loginhandler
