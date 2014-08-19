@@ -1,7 +1,10 @@
-import json
+import json, datetime
+from datetime import timedelta
 
 from flask import render_template, flash, redirect, session, url_for, request, g, Response
 from flask.ext.login import login_user, logout_user, current_user, login_required
+from sqlalchemy import desc
+
 from app import app, db, lm, oid
 from forms import LoginForm
 from models import User, Ticket, ROLE_USER, ROLE_ADMIN
@@ -9,6 +12,7 @@ from models import User, Ticket, ROLE_USER, ROLE_ADMIN
 @app.route('/')
 @app.route('/index')
 @login_required
+
 def index():
     user = g.user
     posts = [
@@ -26,15 +30,42 @@ def index():
         user = user,
         posts = posts)
 
+@app.route('/add_ticket/')
+def add_ticket():
+    """Add a single new ticket to the database"""
+    ticket = Ticket(game='Tom v. Travis', 
+                    section='12', 
+                    game_day=datetime.datetime.now() - timedelta(days=15),
+                    row='32',
+                    seat_no='3')
+    db.session.add(ticket)
+    db.session.commit()
+    return 'Ticket Added successfully!!!'
+
 @app.route('/data/tickets/')
 def show_tickets():
     """Return json data for all tickets to be displayed."""
-    tickets = Ticket.query.all()
-    print dir(tickets)
+    
+    tickets = Ticket.query.order_by(Ticket.game_day).all()
+    #for ticket in tickets:
+        #print ticket
+    return return_json(tickets)
 
+def return_json(tickets):
     payload = []
     for ticket in tickets:
+        print ticket.game_day
+        weekdaynum = ticket.game_day.weekday()
+        weekdaylist = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        weekday = weekdaylist[weekdaynum]
+
+        game_day = ticket.game_day.day
+        game_month = ticket.game_day.month
+
         ticket_dict = {'game': ticket.game,
+                       'weekday': weekday,
+                       'game_day': game_day,
+                       'game_month': game_month,
                        'row': ticket.row,
                        'seat_no': ticket.seat_no,
                        'section': ticket.section,
@@ -44,6 +75,24 @@ def show_tickets():
         payload.append(ticket_dict)
 
     return Response(json.dumps(payload), mimetype='application/json')
+
+@app.route('/data/tickets_future/')
+def data_tickets_future():
+    """Return json data for all tickets to be displayed."""
+    
+    tickets = Ticket.query.filter(Ticket.game_day >= datetime.datetime.now()).order_by(Ticket.game_day)
+    
+    return return_json(tickets)
+
+
+@app.route('/data/tickets_past/')
+def data_tickets_past():
+    """Return json data for all tickets to be displayed."""
+    
+    tickets = Ticket.query.filter(Ticket.game_day <= datetime.datetime.now()).order_by(desc(Ticket.game_day))
+    
+    return return_json(tickets)
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 @oid.loginhandler
