@@ -103,7 +103,7 @@ bower
 * Install front-end packages and dependencies
 
 ```
-$ cd ~/projects/chopstix/chopstix
+$ cd ~/projects/chopstix/app
 $ bower install
 ```
 
