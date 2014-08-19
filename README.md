@@ -148,8 +148,8 @@ $ source venv/bin/activate
 * Run a server
 
 ```
-$ cd ~/projects/chopstix/chopstix
-$ python chopstix.py
+$ cd ~/projects/chopstix
+$ ./run.py
 ```
 
 * Open a web browser and go to http://127.0.0.1:5000/
