@@ -10,13 +10,15 @@ class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     game = db.Column(db.String(80))
     section = db.Column(db.String(10))
+    game_day = db.Column(db.DateTime)
     row = db.Column(db.String(10))
     seat_no = db.Column(db.String(10))
     created_on = db.Column(db.DateTime)
 
-    def __init__(self, game=None, section=None, row=None, seat_no=None, created_on=None):
+    def __init__(self, game=None, section=None, game_day=None, row=None, seat_no=None, created_on=None):
         self.game = game
         self.section = section
+        self.game_day = game_day
         self.row = row
         self.seat_no = seat_no
         if created_on is None:
