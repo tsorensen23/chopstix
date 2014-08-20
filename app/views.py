@@ -30,11 +30,16 @@ def index():
         user = user,
         posts = posts)
 
+@app.route('/show_fake_tickets/')
+def show_entries():
+    """The main view of this app. Display all the tickets for sale."""
+    return render_template('show_entries.html')
+
 @app.route('/add_ticket/')
 def add_ticket():
     """Add a single new ticket to the database"""
-    ticket = Ticket(game='Tom v. Travis', 
-                    section='12', 
+    ticket = Ticket(game='Tom v. Travis',
+                    section='12',
                     game_day=datetime.datetime.now() - timedelta(days=15),
                     row='32',
                     seat_no='3')
@@ -45,7 +50,7 @@ def add_ticket():
 @app.route('/data/tickets/')
 def show_tickets():
     """Return json data for all tickets to be displayed."""
-    
+
     tickets = Ticket.query.order_by(Ticket.game_day).all()
     #for ticket in tickets:
         #print ticket
@@ -82,18 +87,18 @@ def return_json(tickets):
 @app.route('/data/tickets_future/')
 def data_tickets_future():
     """Return json data for all tickets to be displayed."""
-    
+
     tickets = Ticket.query.filter(Ticket.game_day >= datetime.datetime.now()).order_by(Ticket.game_day)
-    
+
     return return_json(tickets)
 
 
 @app.route('/data/tickets_past/')
 def data_tickets_past():
     """Return json data for all tickets to be displayed."""
-    
+
     tickets = Ticket.query.filter(Ticket.game_day <= datetime.datetime.now()).order_by(desc(Ticket.game_day))
-    
+
     return return_json(tickets)
 
 
