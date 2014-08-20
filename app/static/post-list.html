@@ -21,11 +21,11 @@
         <post-card>
           <img src="/static/images/avatar-04.svg" width="70" height="70">
           <!-- <img src="{{post.avatar}}" width="70" height="70"> -->
-          <h2>{{post.seller}}</h2>
+          <h2>Seller: {{post.seller}}</h2>
           <p>Game: {{post.game}}</p>
-          <p>Section {{post.section}} Row {{post.row}} Seat {{post.seat_no}}</p>
+          <p>Section {{post.section}}, Row {{post.row}}, Seat {{post.seat_no}}</p>
           <p>{{post.weekday}}, {{post.game_month}} {{post.game_day}}</p>
-          <p>${{post.price}}</p>
+          <p>Price: ${{post.price}}</p>
         </post-card>
       </template>
     </div>
