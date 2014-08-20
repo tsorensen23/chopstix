@@ -63,10 +63,13 @@ def return_json(tickets):
         weekdaynum = ticket.game_day.weekday()
         weekdaylist = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         weekday = weekdaylist[weekdaynum]
-
+        month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        
         game_day = ticket.game_day.day
-        game_month = ticket.game_day.month
-
+        print '#######'
+        print dir(ticket.game_day)
+        month_num = ticket.game_day.month
+        game_month = month_list[month_num]
         ticket_dict = {'game': ticket.game,
                        'weekday': weekday,
                        'game_day': game_day,
