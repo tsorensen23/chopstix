@@ -3,12 +3,16 @@ from datetime import timedelta
 
 from flask import render_template, flash, redirect, session, url_for, request, g, Response
 from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask.ext.admin.contrib.sqla import ModelView
 from sqlalchemy import desc
 
-from app import app, db, lm, oid
+from app import app, db, lm, oid, admin
 from forms import LoginForm
 from models import User, Ticket, ROLE_USER
 
+# Admin views
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Ticket, db.session))
 
 @app.route('/index')
 @login_required
