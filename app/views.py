@@ -7,12 +7,11 @@ from sqlalchemy import desc
 
 from app import app, db, lm, oid
 from forms import LoginForm
-from models import User, Ticket, ROLE_USER, ROLE_ADMIN
+from models import User, Ticket, ROLE_USER
 
-@app.route('/')
+
 @app.route('/index')
 @login_required
-
 def index():
     user = g.user
     posts = [
@@ -30,7 +29,8 @@ def index():
         user = user,
         posts = posts)
 
-@app.route('/show_fake_tickets/')
+@app.route('/')
+@app.route('/show_all_tickets/')
 def show_entries():
     """The main view of this app. Display all the tickets for sale."""
     return render_template('show_entries.html')
@@ -64,7 +64,7 @@ def return_json(tickets):
         weekdaylist = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         weekday = weekdaylist[weekdaynum]
         month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-        
+
         game_day = ticket.game_day.day
         print '#######'
         print dir(ticket.game_day)
